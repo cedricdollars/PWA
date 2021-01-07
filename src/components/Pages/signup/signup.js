@@ -1,49 +1,47 @@
 import React from 'react'
-import LoginGoogle from '../../../Services/google-auth/login'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { FirebaseContext } from '../../../Services/firebase/index'
+import bgImage from '../../../assets/illustrations/bg-illustration.svg'
 import {
   Container,
   LoginContainer,
   Title,
   Subtitle,
-  TextError,
   TitleForm,
   FormLogin,
   Input,
   Button,
   AsideContainer
-} from './signinStyle'
-import bgImage from '../../../assets/illustrations/bg-illustration.svg'
+} from './signupStyle'
 import { Link } from 'react-router-dom'
 
-const SignIn = () => {
+const SignUp = () => {
   const firebase = useContext(FirebaseContext)
 
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [btn, setBtn] = useState(false)
 
-  useEffect(() => {
-    if (password.length > 5 && email !== '') {
-      setBtn(true)
-    } else if (btn) setBtn(false)
-  }, [email, password, btn])
+  const btnValid =
+    name === '' || email === '' || password === '' ? (
+      <Button disabled> Valider </Button>
+    ) : (
+      <Button> Valider </Button>
+    )
 
   const handleSubmit = e => {
-    e.preventDefault()
     try {
-      firebase.login(email, password)
+      e.preventDefault()
+      firebase.register(email, password)
+      setName('')
       setEmail('')
       setPassword('')
-      setError('')
-      console.log('Successful login ')
-    } catch (error) {
-      setError(error)
+
+      console.log('Email et mot passe enregistrés')
+    } catch (e) {
+      console.log(`Une erreur est survenue : ${e}`)
     }
   }
-
   return (
     <>
       <Title> Bienvenue sur ScheduleGO </Title>{' '}
@@ -57,9 +55,14 @@ const SignIn = () => {
         </AsideContainer>{' '}
         <LoginContainer>
           <Subtitle> Vous avez un évènement à planifier ? </Subtitle>{' '}
-          <TitleForm> Commencer dès maintenant! </TitleForm>{' '}
-          {error !== '' && <TextError> {error.message} </TextError>}{' '}
+          <TitleForm> Créer votre compte </TitleForm>{' '}
           <FormLogin onSubmit={handleSubmit}>
+            <Input
+              type='text'
+              placeholder='Votre nom ex: John Doe'
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />{' '}
             <Input
               type='email'
               placeholder='Votre email? ex: johnDoe@yahoor.fr'
@@ -72,23 +75,18 @@ const SignIn = () => {
               value={password}
               onChange={e => setPassword(e.target.value)}
             />{' '}
-            {btn ? (
-              <Button type='submit'> Connexion </Button>
-            ) : (
-              <Button disabled> Connexion </Button>
-            )}{' '}
-            <LoginGoogle />
+            {btnValid}{' '}
           </FormLogin>{' '}
           <Link
-            to='/signup'
+            to='/signin'
             style={{ fontSize: '1.2rem', textDecoration: 'none' }}
           >
             {' '}
-            Créer un nouveau compte ici{' '}
+            Connectez - vous{' '}
           </Link>{' '}
         </LoginContainer>{' '}
       </Container>{' '}
     </>
   )
 }
-export default SignIn
+export default SignUp

@@ -1,13 +1,4 @@
-import styled, { keyframes } from 'styled-components'
-
-const fadeIn = keyframes`
-  0%{
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   margin: 0;
@@ -27,26 +18,21 @@ export const Title = styled.h1`
   text-align: center;
   font-weight: 700;
 `
-export const TextError = styled.li`
-  text-align: center;
-  color: #fff;
-  background: #f35461;
-  border-radius: 5px;
-  padding: 10px 13px;
-  font-family: 'Nunito';
-  animation: ${fadeIn} 1s 200ms linear;
-`
 export const AsideContainer = styled.div`
   margin: 0;
 `
-
 export const Subtitle = styled.h2`
   font-size: 2rem;
   font-family: 'Nunito';
   font-weight: 700;
 `
-export const TitleForm = styled.h3`
+export const LoginTitle = styled.h3`
   font-size: 1.3rem;
+  font-family: 'Nunito';
+  text-align: center;
+`
+export const TitleForm = styled.h3`
+  font-size: 1.2rem;
   font-family: 'Nunito';
   text-align: center;
 `
@@ -81,11 +67,9 @@ export const Button = styled.button`
   font-size: 1.4rem;
   width: 80%;
   border: none;
-  cursor: pointer;
   outline: none;
-  &:disabled {
-    color: #eee;
-    background: #e1e1e1;
-    cursor: auto;
+  &:hover {
+    background-color: #3c5cc9;
+    cursor: pointer;
   }
 `

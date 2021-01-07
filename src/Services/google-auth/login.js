@@ -1,20 +1,19 @@
 import React from 'react'
 import { useGoogleLogin } from 'react-google-login'
-import { refreshTokenSetup } from '../../utils/refreshToken'
-import { useHistory } from 'react-router-dom'
+
+// import { useHistory } from 'react-router-dom'
 import imgGoogle from '../../assets/icons/google.svg'
 import './loginStyle.css'
 
 const clientId = process.env.REACT_APP_KEY_ID
 
 function LoginGoogle() {
-  const history = useHistory()
+  // const history = useHistory()
 
   const onSuccess = res => {
     console.log(`Login success with current user : `, res.profileObj)
 
-    refreshTokenSetup(res)
-    history.push('/home')
+    //history.push('/')
   }
   const onFailure = res => {
     console.log(`Login failed : `, res)
@@ -24,7 +23,6 @@ function LoginGoogle() {
     onSuccess,
     onFailure,
     clientId,
-    autoLoad: true,
     isSignedIn: true
   })
   return (

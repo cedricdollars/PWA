@@ -1,13 +1,35 @@
-import firebase from 'firebase'
+import app from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/firestore'
 
-var firebaseConfig = {
-  apiKey: 'AIzaSyDhaMpATKSFyMIDu9fyxIfD9TeNUTlmuiA',
-  authDomain: 'pwa-app-cd65d.firebaseapp.com',
-  projectId: 'pwa-app-cd65d',
-  storageBucket: 'pwa-app-cd65d.appspot.com',
-  messagingSenderId: '636479059606',
-  appId: '1:636479059606:web:c0252fa15a1cac019374b7',
-  measurementId: 'G-G4EPFDHKFP'
+const prodConfig = {}
+const devConfig = {
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID
 }
+const config = process.env.NODE_ENV === 'production' ? prodConfig : devConfig
 
-firebase.initializeApp(firebaseConfig)
+class Firebase {
+  constructor() {
+    app.initializeApp(config)
+    this.auth = app.auth()
+    this.firestore = app.firestore()
+  }
+
+  register(email, password) {
+    this.auth.createUserWithEmailAndPassword(email, password)
+  }
+  login(email, password) {
+    this.auth.signInWithEmailAndPassword(email, password)
+  }
+  logout() {
+    this.auth.signOut()
+  }
+}
+export default Firebase
