@@ -1,12 +1,17 @@
 import React from 'react'
-import { NavStyle, NavLogo } from './headerStyle'
+import { NavBar, Logo, ProfileInfo, TextInfo } from './headerStyle'
 
 const Header = () => {
+  const userInfo = JSON.parse(localStorage.getItem('user'))
   return (
     <>
-      <NavStyle>
-        <NavLogo to='/'> SCHEDULEGO </NavLogo>{' '}
-      </NavStyle>{' '}
+      <NavBar>
+        <Logo to='/welcome'> SCHEDULEGO </Logo>{' '}
+        <ProfileInfo>
+          {' '}
+          {userInfo && <TextInfo> {userInfo.user.email} </TextInfo>}{' '}
+        </ProfileInfo>{' '}
+      </NavBar>{' '}
     </>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useGoogleLogin } from 'react-google-login'
 
 // import { useHistory } from 'react-router-dom'
@@ -11,7 +11,7 @@ function LoginGoogle() {
   // const history = useHistory()
 
   const onSuccess = res => {
-    console.log(`Login success with current user : `, res.profileObj)
+    return res
 
     //history.push('/')
   }
@@ -19,12 +19,15 @@ function LoginGoogle() {
     console.log(`Login failed : `, res)
   }
 
-  const { signIn } = useGoogleLogin({
-    onSuccess,
-    onFailure,
-    clientId,
-    isSignedIn: true
-  })
+  const { signIn } = useCallback(
+    useGoogleLogin({
+      onSuccess,
+      onFailure,
+      clientId,
+      isSignedIn: true
+    }),
+    [onSuccess, onFailure]
+  )
   return (
     <>
       <button onClick={signIn} className='btnLogin'>

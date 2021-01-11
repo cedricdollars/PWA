@@ -12,6 +12,12 @@ const fadeIn = keyframes`
 export const Wrapper = styled.div`
   margin: 0;
   padding: 0;
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 export const Container = styled.div`
   display: flex;
@@ -20,6 +26,7 @@ export const Container = styled.div`
 `
 export const LoginContainer = styled.div`
   text-align: center;
+  margin-top: 5rem;
 `
 export const Title = styled.h1`
   font-size: 2.2rem;
@@ -37,7 +44,10 @@ export const TextError = styled.li`
   animation: ${fadeIn} 1s 200ms linear;
 `
 export const AsideContainer = styled.div`
-  margin: 0;
+  margin-right: 5rem;
+`
+export const RightContainer = styled.div`
+  text-align: center;
 `
 
 export const Subtitle = styled.h2`
@@ -51,11 +61,10 @@ export const TitleForm = styled.h3`
   text-align: center;
 `
 export const FormLogin = styled.form`
-  height: 50vh;
-  border-radius: 10px;
+  width: 100%;
 `
 export const Input = styled.input`
-  width: 80%;
+  width: 100%;
   padding: 15px 5px;
   margin: 30px 0;
   color: #010101;
@@ -79,7 +88,7 @@ export const Button = styled.button`
   border-radius: 30px;
   font-weight: 700;
   font-size: 1.4rem;
-  width: 80%;
+  width: 100%;
   border: none;
   cursor: pointer;
   outline: none;
@@ -88,4 +97,15 @@ export const Button = styled.button`
     background: #e1e1e1;
     cursor: auto;
   }
+`
+export const ContentLink = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1.1rem;
+`
+export const TextLink = styled.p`
+  color: #000;
+  font-family: 'Poppins';
+  font-size: 1.2rem;
 `

@@ -2,9 +2,11 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
+  flex-direction: column;
+`
+export const Content = styled.section`
+  flex: 1 0 auto;
+  text-align: center;
 `
 export const Text = styled.h1`
   font-family: 'Josefin Sans', 'Poppins', 'Montserrat';

@@ -1,13 +1,17 @@
 import React from 'react'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { FirebaseContext } from '../../../Services/firebase/index'
 import bgImage from '../../../assets/illustrations/bg-illustration.svg'
 import {
   Container,
+  Wrapper,
   LoginContainer,
   Title,
+  TextError,
   Subtitle,
   TitleForm,
+  ContentLink,
+  TextLink,
   FormLogin,
   Input,
   Button,
@@ -15,40 +19,56 @@ import {
 } from './signupStyle'
 import { Link } from 'react-router-dom'
 
-const SignUp = () => {
+// eslint-disable-next-line react/prop-types
+const SignUp = ({ history }) => {
   const firebase = useContext(FirebaseContext)
 
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    password: ''
+  })
 
-  const btnValid =
-    name === '' || email === '' || password === '' ? (
-      <Button disabled> Valider </Button>
-    ) : (
-      <Button> Valider </Button>
-    )
+  const handleChange = e => {
+    e.preventDefault()
+    setUser({
+      ...user,
+      [e.target.id]: e.target.value
+    })
+  }
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    setError('')
+  }, [user])
 
   const handleSubmit = e => {
-    try {
-      e.preventDefault()
-      firebase.register(email, password)
-      setName('')
-      setEmail('')
-      setPassword('')
+    e.preventDefault()
 
-      console.log('Email et mot passe enregistrés')
-    } catch (e) {
-      console.log(`Une erreur est survenue : ${e}`)
-    }
+    const { email, password } = user
+    firebase
+      .register(email, password)
+      .then(data => {
+        setUser({ ...user })
+        console.log(data)
+
+        // eslint-disable-next-line react/prop-types
+        history.push('/welcome')
+      })
+      .catch(err => {
+        console.log(err)
+        setError(err)
+      })
   }
+  const { name, email, password } = user
+
   return (
-    <>
+    <Wrapper>
       <Title> Bienvenue sur ScheduleGO </Title>{' '}
       <Container>
         <AsideContainer>
           <img
-            style={{ width: 700, height: 700 }}
+            style={{ width: 710, height: 'auto' }}
             src={bgImage}
             alt='illustration'
           />
@@ -56,37 +76,48 @@ const SignUp = () => {
         <LoginContainer>
           <Subtitle> Vous avez un évènement à planifier ? </Subtitle>{' '}
           <TitleForm> Créer votre compte </TitleForm>{' '}
+          {error !== '' && <TextError> {error.message} </TextError>}{' '}
           <FormLogin onSubmit={handleSubmit}>
             <Input
               type='text'
-              placeholder='Votre nom ex: John Doe'
+              id='name'
               value={name}
-              onChange={e => setName(e.target.value)}
+              placeholder='Votre nom ex: John Doe'
+              onChange={handleChange}
             />{' '}
             <Input
               type='email'
-              placeholder='Votre email? ex: johnDoe@yahoor.fr'
+              id='email'
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              placeholder='Votre email? ex: johnDoe@yahoor.fr'
+              onChange={handleChange}
             />{' '}
             <Input
               type='password'
-              placeholder='Votre mot de passe'
+              id='password'
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              placeholder='Votre mot de passe'
+              onChange={handleChange}
             />{' '}
-            {btnValid}{' '}
+            <Button type='submit'> Valider </Button>{' '}
           </FormLogin>{' '}
-          <Link
-            to='/signin'
-            style={{ fontSize: '1.2rem', textDecoration: 'none' }}
-          >
-            {' '}
-            Connectez - vous{' '}
-          </Link>{' '}
+          <ContentLink>
+            <TextLink> Déja inscrit ? </TextLink>{' '}
+            <Link
+              to='/signin'
+              style={{
+                fontSize: '1.2rem',
+                textDecoration: 'none',
+                fontFamily: 'Poppins'
+              }}
+            >
+              {' '}
+              Connectez - vous{' '}
+            </Link>{' '}
+          </ContentLink>{' '}
         </LoginContainer>{' '}
       </Container>{' '}
-    </>
+    </Wrapper>
   )
 }
 export default SignUp

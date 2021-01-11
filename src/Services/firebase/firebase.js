@@ -23,10 +23,10 @@ class Firebase {
   }
 
   register(email, password) {
-    this.auth.createUserWithEmailAndPassword(email, password)
+    return this.auth.createUserWithEmailAndPassword(email, password)
   }
   login(email, password) {
-    this.auth.signInWithEmailAndPassword(email, password)
+    return this.auth.signInWithEmailAndPassword(email, password)
   }
   logout() {
     this.auth.signOut()

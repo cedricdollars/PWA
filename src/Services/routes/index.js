@@ -1,29 +1,71 @@
 import React from 'react'
+import Auth from '../auth'
+import Header from '../../components/Pages/header/header'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import SignIn from '../../components/Pages/signin/signin'
 import SignUp from '../../components/Pages/signup/signup'
-import Home from '../../components/Pages/dashboard/home/home'
-import Event from '../../components/Pages/dashboard/events/event'
-import About from '../../components/Pages/dashboard/about/about'
-import SignOut from '../../components/Pages/dashboard/signout/signout'
+import Home from '../../components/Pages/home/home'
+import Event from '../../components/Pages/events/event'
+import About from '../../components/Pages/about/about'
 import NotFound from '../../components/Pages/notFound/404'
-import Footer from '../../components/Pages/footer/footer'
+import Contact from '../../components/Pages/contact/contact'
+
+const publicRoutes = [
+  {
+    path: '/signin',
+    name: 'signin',
+    component: SignIn
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: SignUp
+  }
+]
+
+const privateRoutes = [
+  {
+    path: '/welcome',
+    name: 'welcome',
+    component: Home
+  },
+  {
+    path: '/events',
+    name: 'event',
+    component: Event
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: About
+  },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: Contact
+  }
+]
 
 const IndexRouter = () => {
   return (
     <Router>
+      <Header />
       <Switch>
-        <Route exact path='/' component={Home} />{' '}
-        <Route path='/signin' component={SignIn} />{' '}
-        <Route path='/signup' component={SignUp} />{' '}
-        <Route path='/event' component={Event} />{' '}
-        <Route path='/about' component={About} />{' '}
-        <Route path='/signout' component={SignOut} />{' '}
+        {' '}
+        {publicRoutes.map(({ path, component: C }, index) => (
+          <Route
+            key={index}
+            path={path}
+            exact
+            render={props => <C {...props} />}
+          />
+        ))}{' '}
+        {privateRoutes.map(({ path, component: C }, index) => (
+          <Auth key={index} path={path} exact component={C} />
+        ))}{' '}
         <Route component={NotFound} />{' '}
       </Switch>{' '}
-      <Footer />
     </Router>
   )
 }
-
 export default IndexRouter

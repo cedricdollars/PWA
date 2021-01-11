@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react'
 import LoginGoogle from '../../../Services/google-auth/login'
 import { useState, useEffect, useContext } from 'react'
@@ -12,36 +13,37 @@ import {
   FormLogin,
   Input,
   Button,
+  ContentLink,
+  TextLink,
   AsideContainer
 } from './signinStyle'
 import bgImage from '../../../assets/illustrations/bg-illustration.svg'
 import { Link } from 'react-router-dom'
 
-const SignIn = () => {
+// eslint-disable-next-line react/prop-types
+const SignIn = ({ history }) => {
   const firebase = useContext(FirebaseContext)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-  const [btn, setBtn] = useState(false)
+
+  localStorage.getItem('user')
 
   useEffect(() => {
-    if (password.length > 5 && email !== '') {
-      setBtn(true)
-    } else if (btn) setBtn(false)
-  }, [email, password, btn])
+    setError('')
+  }, [email, password])
 
   const handleSubmit = e => {
     e.preventDefault()
-    try {
-      firebase.login(email, password)
-      setEmail('')
-      setPassword('')
-      setError('')
-      console.log('Successful login ')
-    } catch (error) {
-      setError(error)
-    }
+    firebase
+      .login(email, password)
+      .then(user => {
+        localStorage.setItem('user', JSON.stringify(user))
+        // eslint-disable-next-line react/prop-types
+        history.push('/welcome')
+      })
+      .catch(error => setError(error))
   }
 
   return (
@@ -50,7 +52,7 @@ const SignIn = () => {
       <Container>
         <AsideContainer>
           <img
-            style={{ width: 700, height: 700 }}
+            style={{ width: 710, height: 'auto' }}
             src={bgImage}
             alt='illustration'
           />
@@ -72,20 +74,32 @@ const SignIn = () => {
               value={password}
               onChange={e => setPassword(e.target.value)}
             />{' '}
-            {btn ? (
-              <Button type='submit'> Connexion </Button>
-            ) : (
-              <Button disabled> Connexion </Button>
-            )}{' '}
+            <Button type='submit'> Connexion </Button>{' '}
+            <p
+              style={{
+                fontFamily: 'Poppins',
+                fontSize: '1rem',
+                marginTop: '15px'
+              }}
+            >
+              {' '}
+              ou{' '}
+            </p>{' '}
             <LoginGoogle />
           </FormLogin>{' '}
-          <Link
-            to='/signup'
-            style={{ fontSize: '1.2rem', textDecoration: 'none' }}
-          >
-            {' '}
-            Créer un nouveau compte ici{' '}
-          </Link>{' '}
+          <ContentLink>
+            <TextLink> Vous n 'avez pas de compte?</TextLink>{' '}
+            <Link
+              to='/signup'
+              style={{
+                fontSize: '1.2rem',
+                textDecoration: 'none',
+                fontFamily: 'Poppins'
+              }}
+            >
+              Inscrivez - vous{' '}
+            </Link>{' '}
+          </ContentLink>{' '}
         </LoginContainer>{' '}
       </Container>{' '}
     </>

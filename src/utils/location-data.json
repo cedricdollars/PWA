@@ -1,0 +1,32 @@
+'locations' = [
+  {
+    location: 'paris, France'
+  },
+  {
+    location: 'île-de-france, France'
+  },
+  {
+    location: 'Marseille, France'
+  },
+  {
+    location: 'Lyon, France'
+  },
+  {
+    location: 'Cannes, France'
+  },
+  {
+    location: 'Toulouse, France'
+  },
+  {
+    location: 'Dijon, France'
+  },
+  {
+    location: 'Lille, France'
+  },
+  {
+    location: 'Bordeaux'
+  },
+  {
+    location: 'Anger, France'
+  }
+]
