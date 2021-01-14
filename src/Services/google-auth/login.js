@@ -6,7 +6,9 @@ import imgGoogle from '../../assets/icons/google.svg'
 import './loginStyle.css'
 
 const clientId =
-  process.env.NODE_ENV === 'development' ? process.env.REACT_APP_KEY_ID : ''
+  process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_KEY_ID
+    : process.env.REACT_APP_KEY_PROD
 
 function LoginGoogle() {
   // const history = useHistory()
