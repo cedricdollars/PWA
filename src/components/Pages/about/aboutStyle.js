@@ -15,3 +15,6 @@ export const Typography = styled.h1`
   text-align: center;
   font-family: 'Poppins';
 `
+export const ContainerBody = styled.div`
+  width: 100%;
+`

@@ -6,7 +6,6 @@ import {
   Container,
   Wrapper,
   LoginContainer,
-  Title,
   TextError,
   Subtitle,
   TitleForm,
@@ -64,7 +63,6 @@ const SignUp = ({ history }) => {
 
   return (
     <Wrapper>
-      <Title> Bienvenue sur ScheduleGO </Title>{' '}
       <Container>
         <AsideContainer>
           <img

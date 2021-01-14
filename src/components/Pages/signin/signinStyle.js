@@ -90,12 +90,11 @@ export const Button = styled.button`
   font-size: 1.4rem;
   width: 100%;
   border: none;
+  transition: all 100ms ease-in-out;
   cursor: pointer;
   outline: none;
-  &:disabled {
-    color: #eee;
-    background: #e1e1e1;
-    cursor: auto;
+  &:hover {
+    opacity: 0.7;
   }
 `
 export const ContentLink = styled.div`
@@ -108,4 +107,12 @@ export const TextLink = styled.p`
   color: #000;
   font-family: 'Poppins';
   font-size: 1.2rem;
+`
+export const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  font-size: 4rem;
+  background: rgba(1, 0, 0, 0.1);
 `

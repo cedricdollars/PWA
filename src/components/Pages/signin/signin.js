@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react'
 import LoginGoogle from '../../../Services/google-auth/login'
@@ -6,7 +7,6 @@ import { FirebaseContext } from '../../../Services/firebase/index'
 import {
   Container,
   LoginContainer,
-  Title,
   Subtitle,
   TextError,
   TitleForm,
@@ -15,6 +15,7 @@ import {
   Button,
   ContentLink,
   TextLink,
+  Loader,
   AsideContainer
 } from './signinStyle'
 import bgImage from '../../../assets/illustrations/bg-illustration.svg'
@@ -27,6 +28,7 @@ const SignIn = ({ history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [isLoading, setLoading] = useState(false)
 
   localStorage.getItem('user')
 
@@ -40,15 +42,19 @@ const SignIn = ({ history }) => {
       .login(email, password)
       .then(user => {
         localStorage.setItem('user', JSON.stringify(user))
-        // eslint-disable-next-line react/prop-types
+        setLoading(false)
         history.push('/welcome')
       })
-      .catch(error => setError(error))
+      .catch(error => {
+        setError(error)
+        setLoading(false)
+      })
   }
 
-  return (
+  return isLoading ? (
+    <Loader> Veuillez patienter... </Loader>
+  ) : (
     <>
-      <Title> Bienvenue sur ScheduleGO </Title>{' '}
       <Container>
         <AsideContainer>
           <img
@@ -88,7 +94,7 @@ const SignIn = ({ history }) => {
             <LoginGoogle />
           </FormLogin>{' '}
           <ContentLink>
-            <TextLink> Vous n 'avez pas de compte?</TextLink>{' '}
+            <TextLink> Pas encore de compte ? </TextLink>{' '}
             <Link
               to='/signup'
               style={{

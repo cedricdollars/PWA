@@ -3,6 +3,7 @@ import { NavBar, Logo, ProfileInfo, TextInfo } from './headerStyle'
 
 const Header = () => {
   const userInfo = JSON.parse(localStorage.getItem('user'))
+
   return (
     <>
       <NavBar>

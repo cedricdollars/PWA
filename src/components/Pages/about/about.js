@@ -1,13 +1,18 @@
 import React from 'react'
 
 import Dashboard from '../dashboard/dashboard'
-import { App, Container } from './aboutStyle'
+import { App, Container, Typography, ContainerBody } from './aboutStyle'
 
 const About = () => {
   return (
     <App>
       <Dashboard />
-      <Container> </Container>{' '}
+      <Container>
+        <Typography>
+          À propos de <strong> ScheduleGO </strong>{' '}
+        </Typography>{' '}
+        <ContainerBody> </ContainerBody>{' '}
+      </Container>{' '}
     </App>
   )
 }

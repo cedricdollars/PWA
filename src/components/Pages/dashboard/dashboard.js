@@ -17,9 +17,6 @@ const Dashboard = () => {
         <ListItem to='/contact' activeStyle>
           Contact{' '}
         </ListItem>{' '}
-        <ListItem to='/signout' activeStyle>
-          Se déconnecter{' '}
-        </ListItem>{' '}
       </MenuItem>{' '}
     </DashboardContainer>
   )
