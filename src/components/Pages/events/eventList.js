@@ -6,6 +6,7 @@ import {
   ContainerListEvent,
   DivBox,
   P,
+  TitleInfo,
   ContentBox,
   IconBox,
   BtnDelete
@@ -14,19 +15,19 @@ import {
 const EventList = ({ events }) => {
   const dispatch = useDispatch()
   if (events.length === 0) {
-    return <P> Aucun évènement prévu </P>
+    return <TitleInfo> Aucun évènement prévu </TitleInfo>
   } else {
     return (
       <>
         <ContainerListEvent>
-          {' '}
+          <TitleInfo> Mes évènements </TitleInfo>{' '}
           {Object.values(events).map(event => (
             <DivBox key={event.id}>
               <ContentBox>
                 <P> {event.title} </P> <i> {event.date} </i>{' '}
               </ContentBox>{' '}
               <IconBox>
-                <BtnDelete onClick={() => dispatch(deleteEvent(event))} />{' '}
+                <BtnDelete onClick={() => dispatch(deleteEvent(event.id))} />{' '}
               </IconBox>{' '}
             </DivBox>
           ))}{' '}

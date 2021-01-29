@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { RiAddCircleFill } from 'react-icons/ri'
-import { TiDeleteOutline } from 'react-icons/ti'
+import { RiDeleteBin6Line } from 'react-icons/ri'
 export const App = styled.div`
   height: 100vh;
   display: flex;
@@ -30,6 +30,7 @@ export const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 `
 
 export const FormArea = styled.form`
@@ -39,6 +40,7 @@ export const FormArea = styled.form`
   background-color: #fff;
   border-radius: 10px;
   box-sizing: border-box;
+  margin: 20vh auto;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
 `
 export const FormGroup = styled.div``
@@ -48,6 +50,10 @@ export const BoxArea = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+`
+export const HeaderForm = styled.h2`
+  text-align: center;
+  font-family: 'Poppins';
 `
 export const SearchInput = styled.input`
   width: 60%;
@@ -62,7 +68,6 @@ export const SearchInput = styled.input`
     border: 1px solid #02567d;
   }
 `
-
 export const Label = styled.label`
   font-family: 'Nunito';
 `
@@ -72,14 +77,16 @@ export const Input = styled.input`
   display: block;
   ${sharedStyles}
 `
-export const Box = styled.div``
+export const Box = styled.div`
+  position: absolute;
+  right: 70px;
+`
 export const LabelAdd = styled.p`
   font-family: 'Poppins';
   padding: 0 10px;
 `
 export const BtnAdd = styled(RiAddCircleFill)`
   outline: none;
-
   font-size: 3rem;
   color: blue;
   cursor: pointer;
@@ -115,6 +122,7 @@ export const ButtonClose = styled(Button)`
 `
 export const ContainerListEvent = styled.div`
   width: 60%;
+  margin: 3vh auto;
 `
 export const DivBox = styled.div`
   width: 100%;
@@ -132,6 +140,12 @@ export const P = styled.p`
   font-size: 1rem;
   font-family: 'Poppins';
 `
+export const TitleInfo = styled.h3`
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-family: 'Avenir';
+`
 export const Text = styled.p`
   text-align: center;
   font-size: 1rem;
@@ -140,11 +154,12 @@ export const Text = styled.p`
 export const ContentBox = styled.div`
   padding: 3vh 20px;
 `
-export const BtnDelete = styled(TiDeleteOutline)`
+export const BtnDelete = styled(RiDeleteBin6Line)`
   cursor: pointer;
   outline: none;
   color: red;
   font-size: 30px;
+  margin-right: 10px;
 `
 export const IconBox = styled.div``
 export const SpanError = styled.span`

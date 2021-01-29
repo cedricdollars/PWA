@@ -9,6 +9,7 @@ import Event from '../../components/Pages/events/event'
 import About from '../../components/Pages/about/about'
 import NotFound from '../../components/Pages/notFound/404'
 import Contact from '../../components/Pages/contact/contact'
+import Calendar from '../../components/Pages/calendar/calendar'
 
 const publicRoutes = [
   {
@@ -43,6 +44,11 @@ const privateRoutes = [
     path: '/contact',
     name: 'contact',
     component: Contact
+  },
+  {
+    path: '/calendar',
+    name: 'calendar',
+    component: Calendar
   }
 ]
 

@@ -17,6 +17,9 @@ const Dashboard = () => {
         <ListItem to='/contact' activeStyle>
           Contact{' '}
         </ListItem>{' '}
+        <ListItem to='/calendar' activeStyle>
+          Calendrier{' '}
+        </ListItem>{' '}
       </MenuItem>{' '}
     </DashboardContainer>
   )

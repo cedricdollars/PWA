@@ -8,13 +8,11 @@ import EventList from './eventList'
 import {
   App,
   Container,
-  Title,
   Section,
-  BoxArea,
   FormGroup,
   Label,
   Input,
-  SearchInput,
+  HeaderForm,
   Box,
   BtnAdd,
   Button,
@@ -31,7 +29,7 @@ const Event = () => {
   const newEvent = useSelector(state => state.events)
 
   const [show, setShow] = useState(false)
-  const [search, setSearch] = useState('')
+
   const [error, setError] = useState('')
   const [event, setEvent] = useState({
     id: uuid(),
@@ -81,23 +79,14 @@ const Event = () => {
     <App>
       <Dashboard />
       <Container>
-        <Title> Rechercher un évènement </Title>{' '}
         <Section>
-          <BoxArea>
-            <SearchInput
-              type='search'
-              value={search}
-              placeholder='Rechercher un évènement'
-              onChange={e => setSearch(e.target.value)}
-            />{' '}
-          </BoxArea>{' '}
           <EventList events={newEvent} />{' '}
           <Box>
             <BtnAdd size='55px' onClick={showForm} />{' '}
           </Box>{' '}
           {show && (
             <FormArea onSubmit={handleSubmit}>
-              {' '}
+              <HeaderForm> Ajout d 'un évènement </HeaderForm> <hr />{' '}
               {error !== '' && <SpanError> {error.message} </SpanError>}{' '}
               <FormGroup>
                 <Label htmlFor='title'> Titre </Label>{' '}
