@@ -52,7 +52,7 @@ const SignUp = ({ history }) => {
         console.log(data)
 
         // eslint-disable-next-line react/prop-types
-        history.push('/welcome')
+        history.push('/')
       })
       .catch(err => {
         console.log(err)

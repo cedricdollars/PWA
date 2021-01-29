@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavBar, Logo, ProfileInfo, TextInfo, Logout } from './headerStyle'
-import { useHistory } from 'react-router-dom'
+import { FirebaseContext } from '../../../Services/firebase/index'
 
 const Header = () => {
-  const history = useHistory()
+  const firebase = useContext(FirebaseContext)
   const userInfo = JSON.parse(localStorage.getItem('user'))
+
   const onLogout = () => {
-    localStorage.removeItem('user')
-    history.push('/signin')
+    firebase.logout()
+    console.log('called')
   }
   return (
     <>

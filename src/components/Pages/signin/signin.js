@@ -43,7 +43,7 @@ const SignIn = ({ history }) => {
       .then(user => {
         localStorage.setItem('user', JSON.stringify(user))
         setLoading(false)
-        history.push('/welcome')
+        history.push('/')
       })
       .catch(error => {
         setError(error)

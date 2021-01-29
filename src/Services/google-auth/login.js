@@ -5,10 +5,7 @@ import { useGoogleLogin } from 'react-google-login'
 import imgGoogle from '../../assets/icons/google.svg'
 import './loginStyle.css'
 
-const clientId =
-  process.env.NODE_ENV === 'development'
-    ? process.env.REACT_APP_GOOGLE_ID_CLIENT
-    : process.env.REACT_APP_GOOGLE_API_KEY
+const clientId = process.env.REACT_APP_GOOGLE_ID_CLIENT
 
 function LoginGoogle() {
   //const history = useHistory()

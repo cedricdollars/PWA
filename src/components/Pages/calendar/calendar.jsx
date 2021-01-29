@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react'
 import { Button } from './calender-style'
 import Dashboard from '../dashboard/dashboard'
@@ -28,20 +29,19 @@ const Calendar = () => {
         .then(() => {
           var event = {
             summary: 'Google I/O 2015',
-            location: '800 Howard St., San Francisco, CA 94103',
-            description:
-              "A chance to hear more about Google's developer products.",
+            location: '5 Avenue Charles de Gaulle',
+            description: 'Conférence des développeurs',
             start: {
-              dateTime: '2015-05-28T09:00:00-07:00',
+              dateTime: '2021-05-28T09:19:00-07:00',
               timeZone: 'America/Los_Angeles'
             },
             end: {
-              dateTime: '2015-05-28T17:00:00-07:00',
+              dateTime: '2021-05-28T17:20:50-07:00',
               timeZone: 'America/Los_Angeles'
             },
             recurrence: ['RRULE:FREQ=DAILY;COUNT=2'],
             attendees: [
-              { email: 'lpage@example.com' },
+              { email: 'gabyngoune@yahoo.com' },
               { email: 'sbrin@example.com' }
             ],
             reminders: {

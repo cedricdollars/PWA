@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useContext, useEffect } from 'react'
 import { FirebaseContext } from '../firebase'
-import { Route } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 
 // eslint-disable-next-line react/prop-types
 const Auth = ({ component: RouteComponent, ...rest }, props) => {
@@ -17,11 +17,17 @@ const Auth = ({ component: RouteComponent, ...rest }, props) => {
       unubscribe()
     }
   }, [currentUser, userSession])
-  //console.log(userSession)
+
   return (
     <Route
       {...rest}
-      render={routeProps => <RouteComponent {...routeProps} />}
+      render={routeProps =>
+        currentUser.auth.currentUser.emailVerified !== false ? (
+          <RouteComponent {...routeProps} />
+        ) : (
+          <Redirect to='/signin' />
+        )
+      }
     />
   )
 }
