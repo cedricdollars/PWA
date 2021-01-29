@@ -5,21 +5,10 @@ The purpose of this application is to allow users to create and manage theirs ev
 
 
 ## Structure of project :
- /src
-  /components
-    /pages
-      /about
-      /calendat
-      /contact
-      /events
-      /home
-      /signin
-      /signup
- /services
-  /auth
-  /routes
-  /google-auth
-  /firebase
-  
-  Demo view: https://schedulego.netlify.app/signin
+- src/ entry point of the project
+- components/pages contains all components of the project such as event component , contact etc
+- Services/ contains all extra features, librairies reusable in the entire of project
+
+
+### Demo view: https://schedulego.netlify.app/signin
   
